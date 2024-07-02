@@ -1,0 +1,98 @@
+---
+title: "卒業論文　BANOVA"
+author: "大﨑智貴"
+date: "2024-05-16"
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("C:/Users/ootmo/OneDrive/Desktop/Pythonfiles_bachelor_thesis")
+```
+
+#### switch to python
+```{r}
+library(reticulate)
+```
+
+#### import python libraries
+```{python}
+import pandas as pd
+import numpy as np
+from import_data import subjects, colnames, import_data
+from statsmodels.stats.anova import AnovaRM
+```
+
+#### prepare dataset for BANOVA
+```{python}
+df_analysis = import_data()
+df_analysis.head()
+```
+
+```{python}
+df_mu = df_analysis.loc[[col for col in colnames 
+                         if 'mu' in col and 'prod' not in col]]
+df_mu
+```
+#### add a column that describes a kind of experimental task
+```{python}
+kazu_or_imi = []
+for i in df_mu.index:
+    if 'kazu' in i: kazu_or_imi.append('kazu')
+    else: kazu_or_imi.append('imi')
+df_mu.insert(1, 'task', kazu_or_imi)
+df_mu.head()
+```
+#### add a column that describes if before practice or after practice
+```{python}
+before_or_after = []
+for i in df_mu.index:
+    if 'obs1' in i: before_or_after.append('before')
+    else: before_or_after.append('after')
+df_mu.insert(1, 'practice', before_or_after)
+df_mu.head()
+```
+#### back to R
+#### load the BayesFactor package and create a dataset made by in python
+```{r}
+library(BayesFactor)
+library(dplyr)
+library(ggplot2)
+df_mu <- py$df_mu
+char_culumn <- sapply(df_mu, is.character)
+df_mu[char_culumn] <- lapply(df_mu[char_culumn], as.factor)
+head(df_mu)
+```
+#### perform the Bayesian ANOVA (BANOVA)
+```{r}
+set.seed(1)
+bf_result <- anovaBF(power ~ practice * task + ID, data = df_mu, whichRandom = "ID")
+```
+#### print the result in BF10 (Alternative/Null)
+```{r}
+print(bf_result) 
+```
+#### print the result in BF01 (Null/Alternative)
+```{r}
+print(1 / bf_result) # BF01 Null/Alternative
+```
+```{r}
+plot(bf_result)
+```
+```{r}
+BF_df <- data.frame(bf_result)
+BF_df <- BF_df %>% 
+  select(bf, error) %>% 
+  rename(BF10 = bf) %>% 
+  mutate(BF01 = 1 / BF10, .after = BF10) 
+write.csv(BF_df, 'BF_df.csv')
+BF_df
+```
+```{r}
+ggplot(BF_df, aes(x = rownames(BF_df), y = BF01)) +
+  geom_bar(stat = 'identity') +
+  coord_flip()
+```
+
+
