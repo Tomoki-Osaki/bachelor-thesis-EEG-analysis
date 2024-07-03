@@ -28,7 +28,7 @@ def import_data(sigma_threshold: int = None,
     df_tsa.insert(0, 'time', 0)
     
     for ID in subjects:
-        path = f'C:/Users/ootmo/OneDrive/Documents/Mimic 2023 mff folders/Mimic_{ID}/Mimic_{ID}_csv/'
+        path = f'Mimic 2023 mff folders/Mimic_{ID}/Mimic_{ID}_csv/'
         C1 = pd.read_csv(path + f'Mimic_{ID}_kazu_obs1.csv').groupby(['time'], as_index=False).mean()
         Cp = pd.read_csv(path + f'Mimic_{ID}_kazu_prod.csv').groupby(['time'], as_index=False).mean()
         C3 = pd.read_csv(path + f'Mimic_{ID}_kazu_obs2.csv').groupby(['time'], as_index=False).mean()
