@@ -133,7 +133,7 @@ result.rename(columns=names_to_change, inplace=True)
 import plotly.figure_factory as ff
 fig = ff.create_table(result, index=False)
 fig.update_layout(autosize=False, width=1000)
-fig.write_image("C:/Users/ootmo/Downloads/summary_table.png", )
+fig.write_image("summary_table.png", )
 
 # parameters of t-distribution
 # nu = pm.Exponential("nu", 1 / 29.0) + 1
