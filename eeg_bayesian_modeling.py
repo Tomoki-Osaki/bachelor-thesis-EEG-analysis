@@ -27,7 +27,7 @@ def import_data(sigma_threshold: int = None,
     df_individual = {}
     
     for ID in subjects:
-        path = f'C:/Users/ootmo/OneDrive/Documents/卒業論文/卒論 H201015 データファイル/EEG 実験データ/Mimic_{ID}/Mimic_{ID}_csv/'
+        path = f'卒業論文/卒論 H201015 データファイル/EEG 実験データ/Mimic_{ID}/Mimic_{ID}_csv/'
         C1 = pd.read_csv(path + f'Mimic_{ID}_kazu_obs1.csv').groupby(['time'], as_index=False).mean()
         Cp = pd.read_csv(path + f'Mimic_{ID}_kazu_prod.csv').groupby(['time'], as_index=False).mean()
         C3 = pd.read_csv(path + f'Mimic_{ID}_kazu_obs2.csv').groupby(['time'], as_index=False).mean()
