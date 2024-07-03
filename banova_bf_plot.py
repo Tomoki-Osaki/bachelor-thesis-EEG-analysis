@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-path = "C:/Users/ootmo/OneDrive/Desktop/Pythonfiles_bachelor_thesis/BF_df.csv"
+path = "Pythonfiles_bachelor_thesis/BF_df.csv"
 BF_df = pd.read_csv(path)
 BF_df.drop(index=2, inplace=True)
 BF_df.drop(columns=['Unnamed: 0'], inplace=True)
