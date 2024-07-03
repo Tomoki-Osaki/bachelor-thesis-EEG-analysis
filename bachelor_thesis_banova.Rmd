@@ -8,7 +8,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-setwd("C:/Users/ootmo/OneDrive/Desktop/Pythonfiles_bachelor_thesis")
+setwd("~/Pythonfiles_bachelor_thesis")
 ```
 
 #### switch to python
