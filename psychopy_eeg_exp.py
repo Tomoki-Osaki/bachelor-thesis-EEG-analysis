@@ -35,7 +35,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\ootmo\\Downloads\\untitled.py',
+    originPath='untitled.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -291,7 +291,7 @@ if expInfo['Condition (1/2)'] == '2':
 #set up handler to look after randomisation of conditions etc
 loop = data.TrialHandler(
     nReps=1, method='random', extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions("C:/Users/minam/Documents/Psychopy/Mimicry/loopTemplate1.xlsx"),
+    trialList=data.importConditions("loopTemplate1.xlsx"),
     seed=None)
 thisExp.addLoop(loop)  # add the loop to the experiment
 thisLoop = loop.trialList[0] # so we can initialise stimuli with some values
