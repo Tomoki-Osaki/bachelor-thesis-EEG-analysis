@@ -14,7 +14,6 @@ warnings.simplefilter('ignore')
 subjectID = '036'
 exp_condition = 'kazu'
 data_path = f"卒業論文/卒論 H201015 データファイル/EEG 実験データ/Mimic_{subjectID}/"
-#"C:/Users/ootmo/OneDrive/Documents/卒業論文/卒論 H201015 データファイル/EEG 実験データ/Mimic_{subjectID}/"
 path = data_path + 'Mimic_036_kazu_20231107_103715.mff'
 
 # import data folder(.mff) or file(.raw)  
